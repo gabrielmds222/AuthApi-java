@@ -8,6 +8,8 @@ public class AuthApiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(AuthApiApplication.class, args);
+
+		System.out.println("Rodando");
 	}
 
 }
