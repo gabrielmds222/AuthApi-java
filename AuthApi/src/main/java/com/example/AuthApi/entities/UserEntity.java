@@ -30,7 +30,7 @@ public class UserEntity {
     }
 
     public UserEntity() {
-        
+
     }
 
     public Long getId(Long id) { return this.id; }
