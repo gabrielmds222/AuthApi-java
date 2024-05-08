@@ -1,6 +1,10 @@
 package com.example.AuthApi.entities;
 
+import com.example.AuthApi.dtos.UserDto;
 import jakarta.persistence.*;
+import org.springframework.beans.BeanUtils;
+
+import java.util.Objects;
 
 @Entity
 @Table(name = "GMDS_USER")
@@ -21,9 +25,15 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
-    public Long getId(Long id) {
-        return this.id;
+    public UserEntity(UserDto user) {
+        BeanUtils.copyProperties(user, this);
     }
+
+    public UserEntity() {
+        
+    }
+
+    public Long getId(Long id) { return this.id; }
 
     public void setId(Long id) {
         this.id = id;
@@ -59,5 +69,18 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserEntity that = (UserEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
